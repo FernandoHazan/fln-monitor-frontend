@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: .
+    container_name: fln-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    mem_limit: 64m

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FLN MONITOR</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome (Ícones) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar: Navegação e Filtros -->
+      <aside class="sidebar">
+        <div class="logo-container">
+          <h1><i class="fa-solid fa-bolt"></i> FLN MONITOR</h1>
+        </div>
+
+        <nav class="navigation">
+          <h3>Navegação</h3>
+          <ul>
+            <li>
+              <a href="#" class="nav-link active" data-view="all"
+                ><i class="fa-solid fa-globe"></i> Feed Geral</a
+              >
+            </li>
+            <li>
+              <a href="#" class="nav-link" data-view="portals"
+                ><i class="fa-solid fa-layer-group"></i> Por Portal (Top 5)</a
+              >
+            </li>
+          </ul>
+
+          <!-- Submenu dinâmico para portais individuais -->
+          <h3>Portais</h3>
+          <ul id="portal-list">
+            <!-- Preenchido via JS -->
+          </ul>
+        </nav>
+
+        <div class="filters-section">
+          <h3>Filtros</h3>
+          <div class="filter-group">
+            <label for="filter-source">Fonte</label>
+            <select id="filter-source">
+              <option value="">Todas</option>
+              <!-- Opções preenchidas via JS -->
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-date">Data</label>
+            <input type="date" id="filter-date" />
+          </div>
+          <button id="btn-clear-filters" class="btn-secondary">
+            <i class="fa-solid fa-filter-circle-xmark"></i> Limpar Filtros
+          </button>
+        </div>
+      </aside>
+
+      <!-- Conteúdo Principal -->
+      <main class="main-content">
+        <header class="top-header">
+          <div class="header-left">
+            <span id="last-update-label"
+              ><i class="fa-regular fa-clock"></i> Atualizado às:
+              <span id="last-update-time">--:--</span></span
+            >
+            <button id="btn-refresh" class="btn-icon" title="Atualizar Agora">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+          </div>
+          <div class="stats-panel">
+            <div class="stat-item">
+              <span class="stat-value" id="stat-24h">0</span>
+              <span class="stat-label">Últimas 24h</span>
+            </div>
+            <div class="stat-item highlight">
+              <span class="stat-value" id="stat-new">0</span>
+              <span class="stat-label">Novas</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Grid onde os cards serão injetados -->
+        <div id="news-container" class="news-grid">
+          <div class="loader-container">
+            <div class="loader"></div>
+            <p>Carregando notícias...</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
