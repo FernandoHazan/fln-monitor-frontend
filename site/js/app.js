@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://146.235.55.85:8080/api";
+const API_BASE_URL = "https://flnmonitor.com.br/api";
 
 const appState = {
   rawNews: [],
