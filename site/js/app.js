@@ -13,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function initApp() {
   try {
-    const portalsData = await fetchFromApi("/portais");
-    const portalsDataRefactored = portalsData.portais;
+    const portaleservicoData = await fetchFromApi("/portaisEservicos");
+    const portalsDataRefactored = portaleservicoData.portais;
+    const servicosDataRefactored = portaleservicoData.servicos;
 
-    setupPortalNavigation(portalsDataRefactored);
+    setupPortalNavigation(portalsDataRefactored, servicosDataRefactored);
 
     setupEventListeners();
 
@@ -83,26 +84,42 @@ async function loadNews(view) {
   }
 }
 
-function setupPortalNavigation(data) {
+function setupPortalNavigation(portal, servico) {
   const portalList = document.getElementById("portal-list");
+  const servicoList = document.getElementById("servico-list");
   const filterSource = document.getElementById("filter-source");
 
   portalList.innerHTML = "";
+  servicoList.innerHTML = "";
   filterSource.innerHTML = '<option value="">Todas</option>';
 
-  const sortedData = [...data].sort((a, b) => a.portal.localeCompare(b.portal));
+  const sortedDataPortal = [...portal].sort((a, b) => a.portal.localeCompare(b.portal));
+  const sortedDataServico = [...servico].sort((a, b) => a.servico.localeCompare(b.servico));
 
-  sortedData.forEach((item) => {
+  sortedDataPortal.forEach((item) => {
     const portalName = item.portal;
 
     const li = document.createElement("li");
     li.innerHTML = `<a href="#" class="nav-link" data-view="portal-${portalName}"><i class="fa-solid fa-angle-right"></i> ${portalName}</a>`;
     portalList.appendChild(li);
 
-    const option = document.createElement("option");
-    option.value = portalName;
-    option.textContent = portalName;
-    filterSource.appendChild(option);
+    const optionPortal = document.createElement("option");
+    optionPortal.value = portalName;
+    optionPortal.textContent = portalName;
+    filterSource.appendChild(optionPortal);
+  });
+
+  sortedDataServico.forEach((item) => {
+    const servicoName = item.portal;
+
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="#" class="nav-link" data-view="portal-${servicoName}"><i class="fa-solid fa-angle-right"></i> ${servicoName}</a>`;
+    servicoList.appendChild(li);
+
+    const optionServico = document.createElement("option");
+    optionServico.value = servicoName;
+    optionServico.textContent = servicoName;
+    filterSource.appendChild(optionServico);
   });
 }
 
